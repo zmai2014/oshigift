@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  enum age: { 指定なし: 0, "10代": 1, "20代": 2, "30代": 3, "40代": 4, "50代": 5, それ以上: 6 }
-  enum gender: { 指定なし:0, 女性: 1, 男性: 2 }
-  enum price: { 指定なし:0, 3,000円以下: 1, 3,000円～: 2, 5,000円～: 3, 10,000円～: 4, 30,000円～: 5, それ以上: 6 }
+  enum age: { ageless: 0, age10s: 1, age20s: 2, age30s: 3, age40s: 4, age50s: 5, over60s: 6 }
+  enum gender: { genderless: 0, male: 1, female: 2 }
+  enum price: { lessthan3000: 0, lessthan5000: 1, lessthan10000: 2, lessthan30000: 3, morethan30000: 4 }
 end
