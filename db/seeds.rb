@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Relationship.create(relationship:'friend')
+Relationship.create(relationship:'coworker')
+Situation.create(situation:'birthday')
+Situation.create(situation:'X`mas')

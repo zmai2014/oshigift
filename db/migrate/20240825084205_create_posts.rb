@@ -7,6 +7,8 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :gender, default: 0
       t.integer :price, default: 0
       t.float :star
+      t.integer :user_id, null: false
+      t.integer :relationship_id
 
       t.timestamps
     end

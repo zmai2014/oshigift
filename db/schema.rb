@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_25_084205) do
+ActiveRecord::Schema.define(version: 2024_08_31_063109) do
+
+  create_table "post_situations", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "situation_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "item_name", null: false
@@ -19,6 +26,20 @@ ActiveRecord::Schema.define(version: 2024_08_25_084205) do
     t.integer "gender", default: 0
     t.integer "price", default: 0
     t.float "star"
+    t.integer "user_id", null: false
+    t.integer "relationship_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.string "relationship"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "situations", force: :cascade do |t|
+    t.string "situation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
