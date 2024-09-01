@@ -4,3 +4,20 @@
 <p><%= @post.item_name %></p>
 <h4>紹介文</h4>
 <p><%= @post.introduction %></p>
+<h4>関係性</h4>
+<p><%= @post.relationship %></p>
+<h4>シチュエーション</h4>
+<p><%= @post.situations %></p>
+<h4>年齢</h4>
+<p><%= @post.age %></p>
+<h4>性別</h4>
+<p><%= @post.gender %></p>
+<h4>予算</h4>
+<p><%= @post.price %></p>
+
+<P>投稿ユーザー：<%= @post.user.name %></P>
+
+<% if @post.user == current_user %>
+  <%= link_to "編集", edit_post_path(@post.id) %>
+  <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% end %>
