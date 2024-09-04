@@ -6,6 +6,10 @@
     <%= link_to post.item_name, post_path(post.id) %>
   </span>
   <P>予算</P>
-  <span><%= post.price %></span>
+  <% if post.price == "lessthan3000" %>
+    <span>3000円以下</span>
+  <% elsif post.price == "lessthan5000" %>
+    <span>5000円以下</span>
+  <% end %>
   
 <% end %>
