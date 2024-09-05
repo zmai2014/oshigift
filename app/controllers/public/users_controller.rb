@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Public::UsersController < ApplicationController
   def mypage
     @user = current_user
     @posts = @user.posts

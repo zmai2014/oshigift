@@ -10,6 +10,12 @@
     <span>3000円以下</span>
   <% elsif post.price == "lessthan5000" %>
     <span>5000円以下</span>
+  <% elsif post.price == "lessthan10000" %>
+    <span>10000円以下</span>
+  <% elsif post.price == "lessthan30000" %>
+    <span>30000円以下</span>
+  <% elsif post.price == "morethan30000" %>
+    <span>30000円以上</span>
   <% end %>
   
 <% end %>

@@ -11,9 +11,26 @@
 <h4>年齢</h4>
 <p><%= @post.age %></p>
 <h4>性別</h4>
-<p><%= @post.gender %></p>
+<% if @post.gender == "genderless" %>
+  <p>指定なし</p>
+<% elsif @post.gender == "male" %>
+  <p>男性</p>
+<% elsif @post.gender == "female" %>
+  <p>女性</p>
+<% end %>
+
 <h4>予算</h4>
-<p><%= @post.price %></p>
+<% if @post.price == "lessthan3000" %>
+  <span>3000円以下</span>
+<% elsif @post.price == "lessthan5000" %>
+    <span>5000円以下</span>
+<% elsif @post.price == "lessthan10000" %>
+  <span>10000円以下</span>
+<% elsif @post.price == "lessthan30000" %>
+    <span>30000円以下</span>
+<% elsif @post.price == "morethan30000" %>
+  <span>30000円以上</span>
+<% end %>
 
 <P>投稿ユーザー：<%= @post.user.name %></P>
 
