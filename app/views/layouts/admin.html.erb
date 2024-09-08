@@ -12,6 +12,9 @@
     <div class="text-right">
       <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
     </div>
+    <div>
+      <%= link_to 'ダッシュボード', admin_dashboards_path %>
+    </div>
   <% end %>
   <%= yield %>
 </body>

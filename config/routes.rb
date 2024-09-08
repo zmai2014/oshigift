@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:index, :destroy]
+    resources :posts, only: [:index, :destroy]
+    resources :relationships, only: [:new, :index, :create, :update, :destroy]
   end
   scope module: :public do
     devise_for :users

@@ -1,8 +1,4 @@
-<h1>全ユーザー一覧</h1>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.name %> - <%= user.email %>
-    </li>
-  <% end %>
-</ul>
+<h2>メニュー</h2>
+<li><%= link_to "全ユーザー一覧", admin_users_path %></li>
+<li><%= link_to "全投稿一覧", admin_posts_path %></li>
+<li><%= link_to "全関係性一覧", admin_relationships_path %></li>
