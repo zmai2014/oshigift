@@ -1,0 +1,9 @@
+<h1>全シチュエーション一覧</h1>
+<ul>
+  <% @situations.each do |situation| %>
+    <li>
+      <%= situation %>
+      <%= link_to '削除', admin_situation_path(situation), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+    </li>
+  <% end %>
+</ul>
