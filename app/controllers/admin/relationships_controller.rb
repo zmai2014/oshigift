@@ -7,6 +7,7 @@ class Admin::RelationshipsController < ApplicationController
     end
     
     def create
+      #binding.pry
       @relationship = Relationship.new(relationship_params)
       @relationship.save
       redirect_to admin_relationships_path
@@ -28,4 +29,10 @@ class Admin::RelationshipsController < ApplicationController
       redirect_to admin_dashboards_path, notice: '関係性を削除しました。'
     end
     
+    private
+  
+    def relationship_params
+      params.require(:relationship).permit(:relationship)
+    end
+  
 end

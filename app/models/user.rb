@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:name]
          
+  validetes :name ,uniqueness: true
+         
   has_one_attached :profile_image
   has_many :posts, dependent: :destroy
   
