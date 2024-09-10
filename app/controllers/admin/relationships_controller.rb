@@ -7,7 +7,6 @@ class Admin::RelationshipsController < ApplicationController
     end
     
     def create
-      #binding.pry
       @relationship = Relationship.new(relationship_params)
       @relationship.save
       redirect_to admin_relationships_path

@@ -1,5 +1,5 @@
 <h1>新規作成</h1>
-<%= form_with model: @situation do |s| %>
+<%= form_with model: @situation ,url: admin_situations_path, method: :post do |s| %>
   <h4>シチュエーション</h4>
   <%= s.text_field :situation %>
   <%= s.submit '作成' %>

@@ -28,4 +28,10 @@ class Admin::SituationsController < ApplicationController
       redirect_to admin_dashboards_path, notice: '関係性を削除しました。'
     end
     
+    private
+  
+    def situation_params
+      params.require(:situation).permit(:rsituation)
+    end
+    
 end
