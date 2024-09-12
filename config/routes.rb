@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:index, :destroy]
     resources :posts, only: [:index, :destroy]
+    resources :post_comments, only: [:index, :destroy]
     resources :situations, only: [:new, :index, :create, :update, :destroy]
     resources :relationships, only: [:new, :index, :create, :update, :destroy]
   end
@@ -14,7 +15,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'mypage' => 'users#mypage'
     resources :users
-    resources :posts
+    resources :posts do
+      resources :post_comments, only: [:create, :update, :destroy]
+    end
     resources :situations, only: [:create, :update, :destroy]
     resources :relationships, only: [:create, :update, :destroy]
   end
