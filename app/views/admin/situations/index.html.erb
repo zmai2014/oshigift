@@ -2,7 +2,7 @@
 <ul>
   <% @situations.each do |situation| %>
     <li>
-      <%= situation %>
+      <%= situation.situation %>
       <%= link_to '削除', admin_situation_path(situation), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
     </li>
   <% end %>

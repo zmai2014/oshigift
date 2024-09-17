@@ -5,7 +5,7 @@
 <h4>紹介文</h4>
 <p><%= @post.introduction %></p>
 <h4>関係性</h4>
-<p><%= @post.relationship %></p>
+<p><%= @post.relationship.relationship %></p>
 <h4>シチュエーション</h4>
   <% @post.situations.each do |situation| %>
   <P><%= situation.situation %></P>
@@ -44,13 +44,13 @@
 <% if @post.like_by?(current_user) %>
   <p>
     <%= link_to post_like_path(@post), method: :delete do %>
-      ♥<%= @post.likes.count %> いいね
+      ♥<%= @post.likes.count %>
     <% end %>
   </p>
   <% else %>
   <p>
     <%= link_to post_likes_path(@post), method: :post do %>
-      ♡<%= @post.likes.count %> いいね
+      ♡<%= @post.likes.count %>
     <% end %>
   </p>
 <% end %>

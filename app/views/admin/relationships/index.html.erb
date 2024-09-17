@@ -2,7 +2,7 @@
 <ul>
   <% @relationships.each do |relationship| %>
     <li>
-      <%= relationship %>
+      <%= relationship.relationship %>
       <%= link_to '削除', admin_relationship_path(relationship), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
     </li>
   <% end %>
