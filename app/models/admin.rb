@@ -4,4 +4,12 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:email]
+  
+  def self.search_for(content)
+    if Post.where('introduction LIKE ?', '%' + content + '%')
+    else
+      User.where('introduction LIKE ?', '%' + content + '%')
+    end
+  end
+  
 end

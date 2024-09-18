@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
+    get '/search', to: 'searches#search', as: 'search'
     resources :users, only: [:index, :destroy]
     resources :posts, only: [:index, :destroy]
     resources :post_comments, only: [:index, :destroy]
