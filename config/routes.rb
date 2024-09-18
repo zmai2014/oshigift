@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     devise_for :users
     root to: 'homes#top'
     get 'mypage' => 'users#mypage'
+    get '/search', to: 'searches#search'
     resources :users
     resources :posts do
       resources :post_comments, only: [:create, :update, :destroy]

@@ -15,4 +15,20 @@ class Post < ApplicationRecord
     likes.exists?(user_id: user.id)
   end
   
+  # def self.search_for(content, method)
+  #   if method == 'perfect'
+  #     Post.where(item_name: content)
+  #   elsif method == 'forward'
+  #     Post.where('item_name LIKE ?', content + '%')
+  #   elsif method == 'backward'
+  #     Post.where('item_name LIKE ?', '%' + content)
+  #   else
+  #     Post.where('item_name LIKE ?', '%' + content + '%')
+  #   end
+  # end
+  
+  def self.search_for(content)
+    Post.where('item_name LIKE ?', '%' + content + '%')
+  end
+  
 end
