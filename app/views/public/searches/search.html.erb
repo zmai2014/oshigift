@@ -1,7 +1,10 @@
 <% if @model == 'user' %>
-	<h3>Users search for "<%= @content %>"</h3>
-    <%= @records.inspect %>
+  <h3>Users search for "<%= @content %>"</h3>
+  <%= @records.inspect %>
 <% elsif @model == 'post' %>
-	<h3>Posts search for "<%= @content %>"</h3>
-    <%= @records.inspect %>
+  <h3>Posts search for "<%= @content %>"</h3>
+  <%= @records.inspect %>
+<% elsif @model == 'comment' %>
+  <h3>Comments search for "<%= @content %>"</h3>
+  <%= @records.inspect %>
 <% end %>

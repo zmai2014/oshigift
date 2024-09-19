@@ -2,3 +2,7 @@
 
 <h4>ユーザー名</h4>
 <p><%= @user.name %></p>
+<%= image_tag @user.get_profile_image(100,100) %>
+<% if @user == current_user %>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+<% end %>

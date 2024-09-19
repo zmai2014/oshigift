@@ -8,9 +8,12 @@ class Admin::SearchesController < ApplicationController
       if @model == 'user'
         @records = User.search_for(@content)
         #@records = User.search_for(@content, @method)
-      else
+      elsif @model == 'post'
         @records = Post.search_for(@content)
         #@records = User.search_for(@content, @method)
+      else
+        @records = PostComment.search_for(@content)
       end
     end
+    
 end

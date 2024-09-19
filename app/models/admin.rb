@@ -6,10 +6,7 @@ class Admin < ApplicationRecord
          :authentication_keys => [:email]
   
   def self.search_for(content)
-    if Post.where('introduction LIKE ?', '%' + content + '%')
-    else
-      User.where('introduction LIKE ?', '%' + content + '%')
-    end
+    Post.where('introduction LIKE ?', '%' + content + '%')
   end
   
 end
