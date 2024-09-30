@@ -31,7 +31,7 @@ class Admin::SituationsController < ApplicationController
     private
   
     def situation_params
-      params.require(:situation).permit(:rsituation)
+      params.require(:situation).permit(:situation)
     end
     
 end

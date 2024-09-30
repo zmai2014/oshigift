@@ -36,16 +36,20 @@
   <h4>紹介文</h4>
   <%= f.text_area :introduction %>
   
-  <h4>関係性</h4>
-  <%= f.select :relationship_id, Relationship.all.map {|relationship|[relationship.relationship, @post.relationship_id = relationship.id]} %>
+  <h4>画像</h4>
+  <%= f.file_field :image, accept: "image/*" %>
   
-  <h4>シチュエーション</h4>
-  <%= f.collection_check_boxes(:situation_ids, Situation.all, :id, :situation) do |b| %>
+  <h4>関係性</h4>
+  <%= f.collection_check_boxes(:relationship_id, Relationship.all, :id, :relationship) do |b| %>
     <div>
       <%= b.check_box %>
       <%= b.label %>
     </div>
   <% end %>
+  
+  <h4>シチュエーション</h4>
+  <%= f.select :situation_ids, Situation.all.map {|situation|[situation.situation, @post_situation.situation_id = situation.id]}, { include_blank: '選択してください', selected:-1} %>
+  
   
   <%= f.label :age, '年齢' %>
   <%= f.select :age, Post.ages.keys.map {|f| [I18n.t("enums.post.age.#{f}"), f]} %>

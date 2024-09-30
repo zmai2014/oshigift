@@ -1,12 +1,15 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
+    @post_situation = PostSituation.new
   end
   
   def create
     @post = Post.new(post_params)
+    @post_situation = PostSituation.new(post_situation_params)
     @post.user_id = current_user.id
     if @post.save
+      @post_situation.save
       redirect_to post_path(@post.id)
     else
       render :new
@@ -42,7 +45,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:item_name, :introduction, :relationship_id, :age, :gender, :price, :star, situation_ids: [])
+    params.require(:post).permit(:item_name, :image, :introduction, :relationship_id, :age, :gender, :price, :star, { situation_ids: [] })
   end
   
 end
