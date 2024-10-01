@@ -6,10 +6,8 @@ class Public::PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
-    @post_situation = PostSituation.new(post_situation_params)
     @post.user_id = current_user.id
     if @post.save
-      @post_situation.save
       redirect_to post_path(@post.id)
     else
       render :new

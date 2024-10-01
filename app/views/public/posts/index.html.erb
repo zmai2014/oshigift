@@ -1,22 +1,13 @@
 <h1>投稿一覧</h1>
-<%= @posts.each do |post| %>
+<% @posts.each do |post| %>
 
   <P>商品名</P>
   <span>
     <%= link_to post.item_name, post_path(post.id) %>
   </span>
   <P>予算</P>
-  <% if post.price == "lessthan3000" %>
-    <span>3000円以下</span>
-  <% elsif post.price == "lessthan5000" %>
-    <span>5000円以下</span>
-  <% elsif post.price == "lessthan10000" %>
-    <span>10000円以下</span>
-  <% elsif post.price == "lessthan30000" %>
-    <span>30000円以下</span>
-  <% elsif post.price == "morethan30000" %>
-    <span>30000円以上</span>
-  <% end %>
+  <p><%= post.price_i18n %></p>
+  
   <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
   
 <% end %>

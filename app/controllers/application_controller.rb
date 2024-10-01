@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
  
   def action_is_public?
-    controller_name == 'users' && action_name == 'mypage'
+    controller_name == 'homes' && action_name == 'top'
   end
   
 end

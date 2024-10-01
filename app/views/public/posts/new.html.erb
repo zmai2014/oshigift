@@ -15,18 +15,18 @@
   <div class="form-group" id="star">
     <%= f.label :"評価" %>
     <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
-    <div id="post_raty"></div>
+    <div id="post_star"></div>
   </div>
   <script>
     $(document).on('turbolinks:load', function() {
-      let elem = document.querySelector('#post_raty');
+      let elem = document.querySelector('#post_star');
       if (elem == null) return;
         elem.innerHTML = ""
         let opt = {  
           starOn: "<%= asset_path('star-on.png') %>",
           starOff: "<%= asset_path('star-off.png') %>",
           starHalf: "<%= asset_path('star-half.png') %>",
-          scoreName: 'post[rate]',
+          scoreName: 'post[star]',
           half: true,
         };
       raty(elem, opt);
@@ -40,16 +40,15 @@
   <%= f.file_field :image, accept: "image/*" %>
   
   <h4>関係性</h4>
-  <%= f.collection_check_boxes(:relationship_id, Relationship.all, :id, :relationship) do |b| %>
+  <%= f.collection_select(:relationship_id,Relationship.all, :id, :relationship) %>
+
+  <h4>シチュエーション</h4>
+  <%= f.collection_check_boxes(:situation_ids, Situation.all, :id, :situation) do |b| %>
     <div>
       <%= b.check_box %>
       <%= b.label %>
     </div>
   <% end %>
-  
-  <h4>シチュエーション</h4>
-  <%= f.select :situation_ids, Situation.all.map {|situation|[situation.situation, @post_situation.situation_id = situation.id]}, { include_blank: '選択してください', selected:-1} %>
-  
   
   <%= f.label :age, '年齢' %>
   <%= f.select :age, Post.ages.keys.map {|f| [I18n.t("enums.post.age.#{f}"), f]} %>
