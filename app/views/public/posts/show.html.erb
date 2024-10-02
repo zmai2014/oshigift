@@ -1,5 +1,23 @@
 <h1>詳細</h1>
-<%= @post.star %>
+<p>評価：<%= @post.star %></p>
+<div id="post_star<%= @post.id %>"></div>
+<script>
+  $(document).on('turbolinks:load', function() {
+      let elem = document.querySelector('#post_star<%= @post.id %>');
+      if (elem == null) return;
+        elem.innerHTML = ""
+        let opt = {  
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[star]',
+          half: true,
+          readOnly: true,
+          score: <%= @post.star %>,
+        };
+      raty(elem, opt);
+    });
+</script>
 <h4>商品名</h4>
 <p><%= @post.item_name %></p>
 <h4>紹介文</h4>
