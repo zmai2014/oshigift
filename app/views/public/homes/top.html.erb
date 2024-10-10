@@ -1,9 +1,21 @@
+<body>
+  <main>
+      <div class="container">
+          <div class="row">
+              <dix class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+                  <h1>プレゼント難民へ贈る</br>
+                  ギフト情報交換サイト</br>
+                  <strong>"推しギフト"</strong></h1>
+                  <h2>贈って喜ばれた・貰って嬉しかったプレゼント情報求ム！</h2>
+              </dix>
+          </div>
+      </div>
+      <h3>新着投稿</h3>
+      <% @posts.each do |post| %>
+      <%= post.item_name %>
+      <% end %>
+  </main>
+</body>
 
-<p>プレゼント難民へ贈るギフト情報交換サイト"推しギフト"</p>
-<p>贈って喜ばれた・貰って嬉しかったプレゼント情報求ム！</p>
 
-<h2>新着投稿</h2>
-<% @posts.each do |post| %>
-<%= post.item_name %>
-<% end %>
 
