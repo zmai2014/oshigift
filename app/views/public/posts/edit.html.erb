@@ -1,29 +1,63 @@
-<h1>投稿編集画面</h1>
-
-<%= form_with model: @post do |f| %>
-  <h4>商品名</h4>
-  <%= f.text_field :item_name %>
-
-  <h4>紹介文</h4>
-  <%= f.text_area :introduction %>
-  
-  <h4>関係性</h4>
-  <%= f.select :relationship_id, Relationship.all.map {|relationship|[relationship.relationship, @post.relationship_id = relationship.id]} %>
-  
-  <h4>シチュエーション</h4>
-  <%= f.collection_check_boxes(:situation_ids, Situation.all, :id, :situation) do |b| %>
-    <div>
-      <%= b.check_box %>
-      <%= b.label %>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 clo-lg-5 px-5 px-sm-0 mx-auto">
+        <h2>編集画面</h2>
+        <%= form_with model: @post do |f| %>
+        <div class="form-group">
+          <label for="Item_name">Item</label></br>
+          <%= f.text_field :item_name %>
+        </div>
+        <div class="form-group" id="star">
+          <%= f.label :"評価" %>
+          <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+          <div id="post_star"></div>
+        </div>
+        <script>
+          $(document).on('turbolinks:load', function() {
+            let elem = document.querySelector('#post_star');
+            if (elem == null) return;
+              elem.innerHTML = ""
+            let opt = {  
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'post[star]',
+              half: true,
+            };
+            raty(elem, opt);
+          });
+        </script>
+        <div class="form-group">
+          <label for="introduction">オススメ内容</label></br>
+          <%= f.text_area :introduction %>
+        </div>
+        <div class="form-group">
+          <label for="relationship">相手との関係性</label></br>
+          <%= f.collection_select(:relationship_id,Relationship.all, :id, :relationship) %>
+        </div>
+        <div class="form-group">
+          <label for="situation">シチュエーション</label></br>
+          <%= f.collection_check_boxes(:situation_ids, Situation.all, :id, :situation) do |b| %>
+          <div>
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+          <% end %>
+        </div>
+        <%= f.label :age, '年齢' %></br>
+        <%= f.select :age, Post.ages.keys.map {|f| [I18n.t("enums.post.age.#{f}"), f]} %></br>
+        <%= f.label :gender, '性別' %></br>
+        <%= f.select :gender, Post.genders.keys.map {|f| [I18n.t("enums.post.gender.#{f}"), f]} %></br>
+        <%= f.label :price, '予算' %></br>
+        <%= f.select :price, Post.prices.keys.map {|f| [I18n.t("enums.post.price.#{f}"), f]}, { include_blank: '選択してください', selected:-1} %></br>
+        <div class="form-group">
+          <label for="image">画像</label></br>
+          <%= f.file_field :image, accept: "image/*" %>
+        </div>
+        <%= f.submit "保存", class: "btn btn-outline-dark" %>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-  
-  <%= f.label :age, '年齢' %>
-  <%= f.select :age, Post.ages.keys.map {|f| [I18n.t("enums.post.age.#{f}"), f]} %>
-  <%= f.label :gender, '性別' %>
-  <%= f.select :gender, Post.genders.keys.map {|f| [I18n.t("enums.post.gender.#{f}"), f]} %>
-  <%= f.label :price, '予算' %>
-  <%= f.select :price, Post.prices.keys.map {|f| [I18n.t("enums.post.price.#{f}"), f]} %>
-
-  <%= f.submit '保存' %>
-<% end %>
+  </div>
+</main>
