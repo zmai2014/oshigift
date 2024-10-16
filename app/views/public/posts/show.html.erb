@@ -1,5 +1,23 @@
 <main>
+  
+  
   <div class="container">
+    <div class= "row1 d.fle"><!--投稿 -->
+      <div class= "left"></div><!--商品-->
+      <div class= "right"></div><!--説明-->
+    </div>
+    
+    <div class= "row2"></div> <!--いいね-->
+    <div class= "row3"></div><!--コメント-->
+  </div>
+  
+  
+  
+  
+  
+  
+  <div class="container">
+    <div>
     <div class="row">
       <h2>Detail</h2>
       <div class="col-sm-12 col-md-8 clo-lg-5 px-5 px-sm-0 mx-auto">
@@ -59,13 +77,16 @@
         </div>
         <div>
           <label for="user">投稿者</label>
-          <%= @post.user.name %>
+          <%= link_to @post.user.name, user_path(@post.user_id) %>
         </div>
         <% if @post.user == current_user %>
           <%= link_to "編集", edit_post_path(@post.id) %>
           <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
         <% end %>
-
+        </div>
+    </div>
+    </div>
+    <div>
         <% if @post.like_by?(current_user) %>
           <p class= "text-danger">
             <%= link_to post_like_path(@post), method: :delete do %>
@@ -79,7 +100,7 @@
             <% end %>
           </p>
         <% end %>
-
+    </div>
         <div>
           <%= form_with model: [@post, @post_comment] do |c| %>
             <%= c.text_area :comment, rows: '5', placeholder: "コメント" %>
@@ -96,8 +117,8 @@
         </div>
 
         <%= link_to "Back", posts_path %>
-      </div>
-    </div>
+      
+    
   </div>
 </main>
 
