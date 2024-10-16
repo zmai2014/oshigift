@@ -1,51 +1,42 @@
-<main>
-  <div class="container">
-    <h2>マイページ</h2>
-    <div class="row">
-
-      <div class="col-md-3">
-        <h2>Myprofile</h2>
-        <%= image_tag @user.get_profile_image(100,100) %>
-        <table class="table">
-          <tbody>
-            <tr></tr>
-            <tr>
-              <th>name</th>
-              <th><%= @user.name %></th>
-            </tr>
-          </tbody>
-        </table>
-        <% if @user == current_user %>
-          <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "text-secondary" %></p>
-          <p><%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "text-muted" %></p>
-        <% end %>
-      </div>
-
-      <div class="col-md-8">
-        <h2>投稿一覧</h2>
-        <table class="table">
-          <tbody>
-            <% @posts.each do |post| %>
-            <tr>
-              <td></td>
-              <td><%= link_to post.item_name, post_path(post.id) %></td>
-              <td></td>
-              <td>
-                <%= link_to "Edit", edit_post_path(post.id), class: "btn btn-outline-dark btn-sm" %>
-              </td>
-              <td>
-                <%#= link_to "Delete", mypage_path, class: "btn btn-danger btn-sm", method: delete, "data-confirm" => "本当に消しますか？" %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-
+<div class="container">
+  <h2>マイページ</h2>
+  <div class="row">
+    <div class="col-md-3">
+      <h2>Myprofile</h2>
+      <%= image_tag @user.get_profile_image(100,100) %>
+      <table class="table">
+        <tbody>
+          <tr></tr>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+        </tbody>
+      </table>
+      <% if @user == current_user %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "text-secondary" %></p>
+        <p><%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "text-muted" %></p>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <h2>投稿一覧</h2>
+      <table class="table">
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <td></td>
+            <td><%= link_to post.item_name, post_path(post.id) %></td>
+            <td></td>
+            <td>
+              <%= link_to "Edit", edit_post_path(post.id), class: "btn btn-outline-dark btn-sm" %>
+            </td>
+            <td>
+              <%#= link_to "Delete", mypage_path, class: "btn btn-danger btn-sm", method: delete, "data-confirm" => "本当に消しますか？" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
-</main>
-
-
-
-
+</div>

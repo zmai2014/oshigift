@@ -1,26 +1,23 @@
-<main>
-  
-  
-  <div class="container">
-    <div class= "row1 d.fle"><!--投稿 -->
-      <div class= "left"></div><!--商品-->
-      <div class= "right"></div><!--説明-->
-    </div>
-    
-    <div class= "row2"></div> <!--いいね-->
-    <div class= "row3"></div><!--コメント-->
-  </div>
-  
-  
-  
-  
-  
-  
-  <div class="container">
+<div class="container">
+  <h2>商品詳細</h2>
+  <div class= "row1 d-flex justify-content-center"><!--投稿 -->
     <div>
-    <div class="row">
-      <h2>Detail</h2>
-      <div class="col-sm-12 col-md-8 clo-lg-5 px-5 px-sm-0 mx-auto">
+      <label for="user">投稿者</label>
+      <%= link_to @post.user.name, user_path(@post.user_id) %>
+    </div>
+    <div class= "left">
+      <div class="col-md">
+        <div>
+          <label for="item_name">商品名</label>
+          <%= @post.item_name %>
+        </div>
+        <div>
+          <label for="image">画像</label>
+        </div>
+      </div>
+    </div><!--商品-->
+    <div class= "right">
+      <div class="col-md">
         <div>
           <label for="star">評価</label>
           <%= @post.star %><div id="post_star<%= @post.id %>"></div>
@@ -28,26 +25,19 @@
             $(document).on('turbolinks:load', function() {
               let elem = document.querySelector('#post_star<%= @post.id %>');
               if (elem == null) return;
-                elem.innerHTML = ""
-                let opt = {  
-                  starOn: "<%= asset_path('star-on.png') %>",
-                  starOff: "<%= asset_path('star-off.png') %>",
-                  starHalf: "<%= asset_path('star-half.png') %>",
-                  scoreName: 'post[star]',
-                  half: true,
-                  readOnly: true,
-                  score: <%= @post.star %>,
-                };
+              elem.innerHTML = ""
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: 'post[star]',
+                half: true,
+                readOnly: true,
+                score: <%= @post.star %>
+              };
               raty(elem, opt);
             });
           </script>
-        </div>
-        <div>
-          <label for="image">画像</label>
-        </div>
-        <div>
-          <label for="item_name">商品名</label>
-          <%= @post.item_name %>
         </div>
         <div>
           <label for="introduction">オススメ内容</label>
@@ -75,51 +65,47 @@
           <label for="price">予算</label>
           <%= @post.price_i18n %>
         </div>
-        <div>
-          <label for="user">投稿者</label>
-          <%= link_to @post.user.name, user_path(@post.user_id) %>
-        </div>
+      </div>
+      <div>
         <% if @post.user == current_user %>
           <%= link_to "編集", edit_post_path(@post.id) %>
           <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
         <% end %>
-        </div>
-    </div>
-    </div>
-    <div>
-        <% if @post.like_by?(current_user) %>
-          <p class= "text-danger">
-            <%= link_to post_like_path(@post), method: :delete do %>
-              ♥<%= @post.likes.count %>
-            <% end %>
-          </p>
-        <% else %>
-          <p>
-            <%= link_to post_likes_path(@post), method: :post do %>
-              ♡<%= @post.likes.count %>
-            <% end %>
-          </p>
-        <% end %>
-    </div>
-        <div>
-          <%= form_with model: [@post, @post_comment] do |c| %>
-            <%= c.text_area :comment, rows: '5', placeholder: "コメント" %>
-            <%= c.submit "コメントする", class: "btn btn-dark btn-sm" %>
-          <% end %>
-        </div>
-
-        <div>
-          <p>コメント件数：<%= @post.post_comments.count %></p>
-          <% @post.post_comments.each do |post_comment| %>
-            <%= post_comment.user.name %>
-            <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-          <% end %>
-        </div>
-
-        <%= link_to "Back", posts_path %>
-      
-    
+      </div>
+    </div><!--説明-->
   </div>
-</main>
 
-
+  <div class= "row2 d-flex justify-content-end">
+    <div class="col-md-6">
+      <% if @post.like_by?(current_user) %>
+        <p class= "text-danger">
+          <%= link_to post_like_path(@post), method: :delete do %>
+            ♥<%= @post.likes.count %>
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to post_likes_path(@post), method: :post do %>
+            ♡<%= @post.likes.count %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div> <!--いいね-->
+  <div class= "row3">
+    <div >
+      <%= form_with model: [@post, @post_comment] do |c| %>
+        <%= c.text_area :comment, rows: '5', placeholder: "コメント" %>
+        <%= c.submit "コメントする", class: "btn btn-dark btn-sm" %>
+      <% end %>
+    </div>
+      <div>
+      <p>コメント件数：<%= @post.post_comments.count %></p>
+      <% @post.post_comments.each do |post_comment| %>
+        <%= post_comment.user.name %>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+      <% end %>
+    </div>
+  </div><!--コメント-->
+  <%= link_to "Back", posts_path %>
+</div>
