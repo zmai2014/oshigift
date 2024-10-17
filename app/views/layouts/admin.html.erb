@@ -8,18 +8,26 @@
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<body>
-  <% if admin_signed_in? %>
-    <div class="text-right">
-      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-    </div>
-    <div>
-      <%= link_to 'ダッシュボード', admin_dashboards_path %>
-    </div>
-    <div>
-      <%= render 'admin/shared/form' %>
-    </div>
-  <% end %>
-  <%= yield %>
+<body class="p-3 mb-2 text-dark-50 d-flex flex-column vh-100">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <ul class="navbar-nav ml-auto">
+          <% if admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'ダッシュボード', admin_dashboards_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+          </li>
+          <%= render 'admin/shared/form' %>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <%= yield %>
+  </main>
 </body>
 </html>

@@ -1,11 +1,7 @@
 class Admin::SituationsController < ApplicationController
     layout 'admin'
     before_action :authenticate_admin!
-    
-    def new
-      @situation = Situation.new
-    end
-    
+
     def create
       @situation = Situation.new(situation_params)
       @situation.save
@@ -19,6 +15,7 @@ class Admin::SituationsController < ApplicationController
     end
     
     def index
+      @situation = Situation.new
       @situations = Situation.all
     end
     

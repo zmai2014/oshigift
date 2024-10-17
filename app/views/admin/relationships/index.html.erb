@@ -1,9 +1,23 @@
-<h1>全関係性一覧</h1>
-<ul>
-  <% @relationships.each do |relationship| %>
-    <li>
-      <%= relationship.relationship %>
-      <%= link_to '削除', admin_relationship_path(relationship), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>新規作成</h2>
+      <%= form_with model: @relationship ,url: admin_relationships_path, method: :post do |r| %>
+        <div>関係性</div>
+        <%= r.text_field :relationship %>
+        <%= r.submit '作成' %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <h2>全関係性一覧</h2>
+      <ul>
+        <% @relationships.each do |relationship| %>
+          <li>
+            <%= relationship.relationship %>
+            <%= link_to '削除', admin_relationship_path(relationship), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

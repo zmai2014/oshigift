@@ -1,6 +1,0 @@
-<h1>新規作成</h1>
-<%= form_with model: @relationship ,url: admin_relationships_path, method: :post do |r| %>
-  <h4>関係性</h4>
-  <%= r.text_field :relationship %>
-  <%= r.submit '作成' %>
-<% end %>

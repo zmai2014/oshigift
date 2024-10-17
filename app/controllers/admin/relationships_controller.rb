@@ -2,10 +2,6 @@ class Admin::RelationshipsController < ApplicationController
     layout 'admin'
     before_action :authenticate_admin!
     
-    def new
-      @relationship = Relationship.new
-    end
-    
     def create
       @relationship = Relationship.new(relationship_params)
       @relationship.save
@@ -19,6 +15,7 @@ class Admin::RelationshipsController < ApplicationController
     end
     
     def index
+      @relationship = Relationship.new
       @relationships = Relationship.all
     end
     

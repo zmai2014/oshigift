@@ -1,9 +1,23 @@
-<h1>全シチュエーション一覧</h1>
-<ul>
-  <% @situations.each do |situation| %>
-    <li>
-      <%= situation.situation %>
-      <%= link_to '削除', admin_situation_path(situation), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>新規作成</h2>
+      <%= form_with model: @situation ,url: admin_situations_path, method: :post do |s| %>
+        <div>シチュエーション</div>
+        <%= s.text_field :situation %>
+        <%= s.submit '作成' %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <h2>全シチュエーション一覧</h2>
+      <ul>
+        <% @situations.each do |situation| %>
+          <li>
+            <%= situation.situation %>
+            <%= link_to '削除', admin_situation_path(situation), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
