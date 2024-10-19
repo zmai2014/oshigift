@@ -1,10 +1,15 @@
-<h1>ユーザー詳細</h1>
-
-<h4>ユーザー名</h4>
-<p><%= @user.name %></p>
-<h4>ひとこと</h4>
-<p><%= @user.introduction %></p>
-<%= image_tag @user.get_profile_image(100,100) %>
-<% if @user == current_user %>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 clo-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>ユーザー詳細</h2>
+      <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+      <% if @user == current_user %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+      <% end %>
+      <h4>ユーザー名</h4>
+      <p><%= @user.name %></p>
+      <h4>ひとこと</h4>
+      <p><%= @user.introduction %></p>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,10 @@ class Post < ApplicationRecord
     likes.exists?(user_id: user.id)
   end
   
+  def get_image(width, height)
+    image.variant(resize_to_limit: [width, height]).processed
+  end
+  
   # def self.search_for(content, method)
   #   if method == 'perfect'
   #     Post.where(item_name: content)

@@ -5,19 +5,22 @@
       <%= form_with model: @situation ,url: admin_situations_path, method: :post do |s| %>
         <div>シチュエーション</div>
         <%= s.text_field :situation %>
-        <%= s.submit '作成' %>
+        <%= s.submit 'Create', class: "btn btn-white btn-outline-dark btn-sm" %>
       <% end %>
     </div>
     <div class="col-md-8">
       <h2>全シチュエーション一覧</h2>
-      <ul>
-        <% @situations.each do |situation| %>
-          <li>
-            <%= situation.situation %>
-            <%= link_to '削除', admin_situation_path(situation), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
-          </li>
-        <% end %>
-      </ul>
+      <table class="table">
+        <tbody>
+          <% @situations.each do |situation| %>
+          <tr>
+            <td><%= situation.situation %></td>
+            <td><%= link_to '削除', admin_situation_path(situation), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
+  <%= link_to 'Back', admin_dashboards_path %>
 </div>

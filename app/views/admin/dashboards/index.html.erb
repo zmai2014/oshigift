@@ -1,11 +1,29 @@
 <div class="container">
   <div class="row">
     <div>
-      <h2>メニュー</h2>
-      <li><%= link_to "全ユーザー一覧", admin_users_path %></li>
-      <li><%= link_to "全投稿一覧", admin_posts_path %></li>
-      <li><%= link_to "全関係性一覧", admin_relationships_path %></li>
-      <li><%= link_to "全シチュエーション一覧", admin_situations_path %></li>
+      <h2><i class="fa-solid fa-lock"></i>管理者メニュー</h2>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <i class="fa-solid fa-angles-right"></i>
+          <%= link_to "全ユーザー一覧", admin_users_path, class: 'text-dark' %>
+        </li>
+        <li class="nav-item">
+          <i class="fa-solid fa-angles-right"></i>
+          <%= link_to "全投稿一覧", admin_posts_path, class: 'text-dark' %>
+        </li>
+        <li>
+          <i class="fa-solid fa-angles-right"></i>
+          <%= link_to "全コメント一覧", admin_post_comments_path, class: 'text-dark' %>
+        </li>
+        <li>
+          <i class="fa-solid fa-angles-right"></i>
+          <%= link_to "全関係性一覧", admin_relationships_path, class: 'text-dark' %>
+        </li>
+        <li>
+          <i class="fa-solid fa-angles-right"></i>
+          <%= link_to "全シチュエーション一覧", admin_situations_path, class: 'text-dark' %>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

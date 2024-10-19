@@ -1,9 +1,32 @@
-<h1>全投稿一覧</h1>
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= post.item_name %> - <%= post.user.name %>
-      <%= link_to '削除', admin_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
-    </li>
-  <% end %>
-</ul>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h2>全投稿一覧</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Item</th>
+            <th>UserName</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <td></td>
+            <td>
+              <%= link_to post_path(post.id) do %>
+              <%= post.item_name %>
+              <% end %>
+            </td>
+            <td><%= post.user.name %></td>
+            <td><%= link_to '削除', admin_post_path(post), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to 'Back', admin_dashboards_path %>
+    </div>
+  </div>
+</div>

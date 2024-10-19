@@ -1,82 +1,93 @@
 <div class="container">
   <h2>商品詳細</h2>
-  <div class= "row1 d-flex"><!--投稿 -->
-    <div>
+  <div class= "row d-flex">
+    <div class="col-2">
       <label for="user">投稿者</label>
       <%= link_to @post.user.name, user_path(@post.user_id) %>
     </div>
-    <div class= "left">
-      <div class="col-md">
-        <div>
-          <label for="item_name">商品名</label>
-          <%= @post.item_name %>
-        </div>
-        <div>
-          <label for="image">画像</label>
-        </div>
-      </div>
-    </div><!--商品-->
-    <div class= "right">
-      <div class="col-md">
-        <div>
-          <label for="star">評価</label>
-          <%= @post.star %><div id="post_star<%= @post.id %>"></div>
-          <script>
-            $(document).on('turbolinks:load', function() {
-              let elem = document.querySelector('#post_star<%= @post.id %>');
-              if (elem == null) return;
-              elem.innerHTML = ""
-              let opt = {
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                scoreName: 'post[star]',
-                half: true,
-                readOnly: true,
-                score: <%= @post.star %>
-              };
-              raty(elem, opt);
-            });
-          </script>
-        </div>
-        <div>
-          <label for="introduction">オススメ内容</label>
-          <%= @post.introduction %>
-        </div>
-        <div>
-          <label for="relationship">相手との関係性</label>
-          <%= @post.relationship.relationship %>
-        </div>
-        <div>
-          <label for="situation">シチュエーション</label>
-          <% @post.situations.each do |situation| %>
-          <%= situation.situation %>
+    <div class= "col-5">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th>商品名</th>
+            <td><%= @post.item_name %></td>
+          </tr>
+          <% if @post.image.attached? %>
+          <tr>
+            <th>画像</th>
+            <td><%= image_tag @post.get_image(300, 300) %></td>
+          </tr>
           <% end %>
-        </div>
-        <div>
-          <label for="age">年齢</label>
-          <%= @post.age_i18n %>
-        </div>
-        <div>
-          <label for="gender">性別</label>
-          <%= @post.gender_i18n %>
-        </div>
-        <div>
-          <label for="price">予算</label>
-          <%= @post.price_i18n %>
-        </div>
-      </div>
+        </tbody>
+      </table>
+    </div>
+    <div class= "col">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th>評価</th>
+            <td>
+              <% @post.star %><div id="post_star<%= @post.id %>"></div>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#post_star<%= @post.id %>');
+                  if (elem == null) return;
+                  elem.innerHTML = ""
+                  let opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    scoreName: 'post[star]',
+                    half: true,
+                    readOnly: true,
+                    score: <%= @post.star %>
+                  };
+                  raty(elem, opt);
+                });
+              </script>
+            </td>
+          </tr>
+          <tr>
+            <th>オススメ内容</th>
+            <td><%= @post.introduction %></td>
+          </tr>
+          <tr>
+            <th>相手との関係性</th>
+            <td><%= @post.relationship.relationship %></td>
+          </tr>
+          <tr>
+            <th>シチュエーション</th>
+            <td>
+              <% @post.situations.each do |situation| %>
+              <%= situation.situation %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>年齢</th>
+            <td><%= @post.age_i18n %></td>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <td><%= @post.gender_i18n %></td>
+          </tr>
+          <tr>
+            <th>予算</th>
+            <td><%= @post.price_i18n %></td>
+          </tr>
+        </tbody>
+      </table>
       <div>
         <% if @post.user == current_user %>
           <%= link_to "編集", edit_post_path(@post.id) %>
           <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
         <% end %>
       </div>
-    </div><!--説明-->
+    </div>
   </div>
 
-  <div class= "row2 d-flex">
-    <div class="col-md-6">
+  <div class= "row">
+    <div class="col">
       <% if @post.like_by?(current_user) %>
         <p class= "text-danger">
           <%= link_to post_like_path(@post), method: :delete do %>
@@ -91,22 +102,34 @@
         </p>
       <% end %>
     </div>
-  </div> <!--いいね-->
-  <div class= "row3">
-    <div >
+  </div>
+  
+  <div class= "row">
+    <div class="col-5">
       <%= form_with model: [@post, @post_comment] do |c| %>
         <%= c.text_area :comment, rows: '5', placeholder: "コメント" %>
         <%= c.submit "コメントする", class: "btn btn-dark btn-sm" %>
       <% end %>
-    </div>
-      <div>
       <p>コメント件数：<%= @post.post_comments.count %></p>
+    </div>
+    <div class="col-7">
       <% @post.post_comments.each do |post_comment| %>
-        <%= post_comment.comment %>
-        <%= post_comment.user.name %>
-        <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+      <div class="row">
+        <div class="col-6">
+          <%= post_comment.comment %>
+        </div>
+        <div class="col-3">
+          <%= link_to post_comment.user.name, user_path(post_comment.user_id) %>
+        </div>
+        <div class="col-3">
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+          <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_post_comment_path(post_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+        </div>
+      </div>
       <% end %>
     </div>
-  </div><!--コメント-->
+  </div>
   <%= link_to "Back", posts_path %>
 </div>

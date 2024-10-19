@@ -12,4 +12,9 @@ class Public::LikesController < ApplicationController
     like.destroy
     redirect_to post_path(post)
   end
+  
+  def index
+    @likes = Like.all
+    like = current_user.likes.find_by(post_id: post.id)
+  end
 end

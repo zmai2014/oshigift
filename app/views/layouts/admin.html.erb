@@ -4,6 +4,8 @@
   <title>Admin - Oshigift</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+
+  <script src="https://kit.fontawesome.com/1de1265c5c.js" crossorigin="anonymous"></script>
   <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,13 +14,14 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
+        
         <ul class="navbar-nav ml-auto">
           <% if admin_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'ダッシュボード', admin_dashboards_path %>
+            <%= link_to 'ダッシュボード', admin_dashboards_path, class: 'nav-link text-white' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+            <%= link_to 'ログアウト', destroy_admin_session_path, class: 'nav-link text-white', method: :delete %>
           </li>
           <%= render 'admin/shared/form' %>
           <% end %>

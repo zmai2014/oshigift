@@ -1,18 +1,27 @@
-<h2>検索結果</h2>
-<% if @model == 'user' %>
-  <h3>Users search for "<%= @content %>"</h3>
-  <% @records.each do |user| %>
-    <%= link_to user.name, user_path(user.id) %>
-  <% end %>
-<% elsif @model == 'post' %>
-  <h3>Posts search for "<%= @content %>"</h3>
-  <% @records.each do |post| %>
-    <%= link_to post.item_name, post_path(post.id) %>
-    <%= post.introduction %>
-  <% end %>
-<% elsif @model == 'comment' %>
-  <h3>Comments search for "<%= @content %>"</h3>
-  <% @records.each do |comment| %>
-    <%= post_comment.comment %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>検索結果</h2>
+      <% if @model == 'user' %>
+        <h3>Users search for "<%= @content %>"</h3>
+        <% @records.each do |user| %>
+          <%= link_to user.name, user_path(user.id) %>
+        <% end %>
+      <% elsif @model == 'post' %>
+        <h3>Posts search for "<%= @content %>"</h3>
+        <% @records.each do |post| %>
+          <%= link_to post.item_name, post_path(post.id) %>
+          <%= post.introduction %>
+        <% end %>
+      <% elsif @model == 'comment' %>
+        <h3>Comments search for "<%= @content %>"</h3>
+        <% @records.each do |comment| %>
+          <%= post_comment.comment %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
