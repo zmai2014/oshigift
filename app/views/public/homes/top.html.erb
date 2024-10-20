@@ -3,13 +3,25 @@
     <dix class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
       <h1>プレゼント難民へ贈る</br>
           ギフト情報交換サイト</br>
-          <strong>"推しギフト"</strong></h1>
+          <strong>"推しギフト<i class="fa-solid fa-gift"></i>"</strong></h1>
           <h2>贈って喜ばれた・貰って嬉しかったプレゼント情報求ム！</h2>
     </dix>
   </div>
+  <div class="row">
+    <h3>新着投稿</h3>
+    <table class="table table-borderless">
+      <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+          <th><%= link_to post.item_name, post_path(post.id) %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+      <% if @posts.count == 3 %>
+        <%= link_to posts_path do %>
+        <i class="fa-solid fa-ellipsis"></i>
+        <% end %>
+      <% end %>
+  </div>
 </div>
-<h3>新着投稿</h3>
-<% @posts.each do |post| %>
-<%= post.item_name %>
-<% end %>
-

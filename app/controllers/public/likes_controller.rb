@@ -14,7 +14,6 @@ class Public::LikesController < ApplicationController
   end
   
   def index
-    @likes = Like.all
-    like = current_user.likes.find_by(post_id: post.id)
+    @likes = current_user.likes
   end
 end

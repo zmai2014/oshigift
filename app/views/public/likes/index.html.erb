@@ -6,7 +6,7 @@
           <tr>
               <th></th>
               <th>Item</th>
-              <th>UserName</th>
+              <th>Price</th>
               <th></th>
           </tr>
         </thead>
@@ -15,14 +15,14 @@
           <tr>
               <td></td>
               <td>
-                <%= link_to post_path(post.id) do %>
-                <%= post.item_name %>
+                <%= link_to post_path(like.post.id) do %>
+                <%= like.post.item_name %>
                 <% end %>
               </td>
-              <td></td>
+              <td><%= like.post.price %></td>
               <td></td>
           </tr>
-          <% end 
+          <% end %>
         </tbody>
       </table>
     </div>
