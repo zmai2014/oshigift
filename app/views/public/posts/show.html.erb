@@ -2,8 +2,14 @@
   <h2>商品詳細</h2>
   <div class= "row d-flex">
     <div class="col-2">
-      <label for="user">投稿者</label>
-      <%= link_to @post.user.name, user_path(@post.user_id) %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>投稿者</td>
+            <td><%= link_to @post.user.name, user_path(@post.user_id) %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class= "col-5">
       <table class="table table-borderless">

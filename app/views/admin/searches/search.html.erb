@@ -1,23 +1,41 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h2>検索結果</h2>
+    <div class="col-6">
+      <h2>検索結果 <i class="fa-solid fa-magnifying-glass"></i></h2>
       <% if @model == 'user' %>
         <h3>Users search for "<%= @content %>"</h3>
-        <% @records.each do |user| %>
-          <%= link_to user.name, user_path(user.id) %>
-        <% end %>
+        <table class="table table-borderless">
+          <tbody>
+            <% @records.each do |user| %>
+            <tr>
+              <td><%= link_to user.name, user_path(user.id), class: "text-dark" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% elsif @model == 'post' %>
         <h3>Posts search for "<%= @content %>"</h3>
-        <% @records.each do |post| %>
-          <%= link_to post.item_name, post_path(post.id) %>
-          <%= post.introduction %>
-        <% end %>
+        <table class="table table-borderless">
+          <tbody>
+            <% @records.each do |post| %>
+            <tr>
+              <th><%= link_to post.item_name, post_path(post.id), class: "text-dark" %></th>
+              <td><%= post.introduction %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% elsif @model == 'comment' %>
         <h3>Comments search for "<%= @content %>"</h3>
-        <% @records.each do |comment| %>
-          <%= post_comment.comment %>
-        <% end %>
+        <table class="table table-borderless">
+          <tbody>
+            <% @records.each do |comment| %>
+            <tr>
+              <td><%= post_comment.comment %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% end %>
     </div>
   </div>

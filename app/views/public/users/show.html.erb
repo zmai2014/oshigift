@@ -1,15 +1,41 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-8 clo-lg-5 px-5 px-sm-0 mx-auto">
+    <div class="col-3">
       <h2>ユーザー詳細</h2>
       <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
-      <% if @user == current_user %>
-        <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-      <% end %>
-      <h4>ユーザー名</h4>
-      <p><%= @user.name %></p>
-      <h4>ひとこと</h4>
-      <p><%= @user.introduction %></p>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th>ユーザー名</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>ひとこと</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center">
+        <% if @user == current_user %>
+          <%= link_to edit_user_path(@user), class: "text-dark" do %>
+          <i class="fa-solid fa-user-gear"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-8">
+      <h3>推し <i class="fa-solid fa-gifts"></i></h3>
+      <table class="table table-borderless">
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <td></td>
+            <td><%= link_to post.item_name, post_path(post.id) %></td>
+            <td><%= post.price_i18n %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

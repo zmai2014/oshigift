@@ -8,20 +8,45 @@
     </dix>
   </div>
   <div class="row">
-    <h3>新着投稿</h3>
-    <table class="table table-borderless">
-      <tbody>
-        <% @posts.each do |post| %>
-        <tr>
-          <th><%= link_to post.item_name, post_path(post.id) %></th>
-        </tr>
+    <div class="col">
+      <h3>新着投稿</h3>
+      <table class="table table-borderless">
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <th><%= link_to post.item_name, post_path(post.id), class: "text-dark" %></th>
+            <td><%= post.price_i18n %></td>
+            <td>
+              <% post.star %><div id="post_star<%= post.id %>"></div>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#post_star<%= post.id %>');
+                  if (elem == null) return;
+                  elem.innerHTML = ""
+                  let opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    scoreName: 'post[star]',
+                    half: true,
+                    readOnly: true,
+                    score: <%= post.star %>
+                  };
+                  raty(elem, opt);
+                });
+              </script>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-around">
+        <% if @posts.count == 3 %>
+          <%= link_to posts_path, class: "text-dark" do %>
+          <i class="fa-solid fa-ellipsis"></i>
+          <% end %>
         <% end %>
-      </tbody>
-    </table>
-      <% if @posts.count == 3 %>
-        <%= link_to posts_path do %>
-        <i class="fa-solid fa-ellipsis"></i>
-        <% end %>
-      <% end %>
+      </div>
+    </div>
   </div>
 </div>
