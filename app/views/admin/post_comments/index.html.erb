@@ -15,7 +15,7 @@
           <% @post_comments.each do |post_comment| %>
           <tr>
             <td></td>
-            <td><%= post_comment %></td>
+            <td><%= post_comment.comment %></td>
             <td><%= post_comment.user.name %></td>
             <td><%= link_to '削除', admin_post_comment_path(post_comment), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
           </tr>
