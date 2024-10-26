@@ -1,6 +1,4 @@
 class Public::UsersController < ApplicationController
-  before_action :require_user
-  
   def mypage
     @user = current_user
     @posts = @user.posts
