@@ -29,7 +29,7 @@
       </script>
       <div class="form-group">
         <label for="introduction">オススメ内容</label></br>
-        <%= f.text_area :introduction %>
+        <%= f.text_area :introduction, class: "form-control" %>
       </div>
       <div class="form-group">
         <label for="relationship">相手との関係性</label></br>
@@ -37,19 +37,29 @@
       </div>
       <div class="form-group">
         <label for="situation">シチュエーション</label></br>
-        <%= f.collection_check_boxes(:situation_ids, Situation.all, :id, :situation) do |b| %>
-        <div>
-          <%= b.check_box %>
-          <%= b.label %>
+        <div class="row">
+          <%= f.collection_check_boxes(:situation_ids, Situation.all, :id, :situation) do |b| %>
+          <div class="col-md-3">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+          <% end %>
         </div>
-        <% end %>
       </div>
-      <%= f.label :age, '年齢' %></br>
-      <%= f.select :age, Post.ages.keys.map {|f| [I18n.t("enums.post.age.#{f}"), f]} %></br>
-      <%= f.label :gender, '性別' %></br>
-      <%= f.select :gender, Post.genders.keys.map {|f| [I18n.t("enums.post.gender.#{f}"), f]} %></br>
-      <%= f.label :price, '予算' %></br>
-      <%= f.select :price, Post.prices.keys.map {|f| [I18n.t("enums.post.price.#{f}"), f]}, { include_blank: '選択してください', selected:-1} %></br>
+      <div class="row">
+        <div class="col-md-4">
+          <%= f.label :age, '年齢' %></br>
+          <%= f.select :age, Post.ages.keys.map {|f| [I18n.t("enums.post.age.#{f}"), f]} %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label :gender, '性別' %></br>
+          <%= f.select :gender, Post.genders.keys.map {|f| [I18n.t("enums.post.gender.#{f}"), f]} %>
+        </div>
+        <div class="col-md-4">
+          <%= f.label :price, '予算' %></br>
+          <%= f.select :price, Post.prices.keys.map {|f| [I18n.t("enums.post.price.#{f}"), f]}, { include_blank: '選択してください', selected:-1} %>
+        </div>
+      </div>
       <div class="form-group">
         <label for="image">画像</label></br>
         <%= f.file_field :image, accept: "image/*" %>
